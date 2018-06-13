@@ -6,9 +6,15 @@
   "dependencies": {
     "protractor": "^5.3.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@types/jasminewd2": "^2.0.3",
+    "typescript": "^2.9.2"
+  },
   "scripts": {
-    "test": "protractor protractor.config.js"
+    "clean": "rm -rf dist",
+    "prebuild": "npm run clean",
+    "build": "tsc",
+    "test": "npm run build && protractor dist/protractor/config.js"
   },
   "repository": {
     "type": "git",
