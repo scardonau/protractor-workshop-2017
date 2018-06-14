@@ -4,7 +4,8 @@
   "description": "This is a Workshop about Protractor",
   "main": "index.js",
   "dependencies": {
-    "protractor": "^5.3.2"
+    "protractor": "^5.3.2",
+    "webdriver-manager": "^12.0.6"
   },
   "devDependencies": {
     "@types/jasminewd2": "^2.0.3",
@@ -15,8 +16,10 @@
     "clean": "rm -rf dist",
     "prebuild": "npm run clean",
     "build": "tsc",
+    "test": "npm run test:headless",
     "test:local": "npm run build && protractor dist/protractor/config.js",
-    "test:headless": "npm run build && protractor dist/protractor/headless.config.js"
+    "test:headless": "npm run build && protractor dist/protractor/headless.config.js",
+    "postinstall": "webdriver-manager update --gecko false"
   },
   "repository": {
     "type": "git",
