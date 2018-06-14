@@ -4,7 +4,8 @@
   "description": "This is a Workshop about Protractor",
   "main": "index.js",
   "dependencies": {
-    "protractor": "^5.3.2"
+    "protractor": "^5.3.2",
+    "webdriver-manager": "^12.0.6"
   },
   "devDependencies": {
     "@types/jasminewd2": "^2.0.3",
