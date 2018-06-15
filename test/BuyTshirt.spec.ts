@@ -23,8 +23,8 @@ describe('Buy a t-shirt', () => {
   const paymentStepPage: PaymentStepPage = new PaymentStepPage();
   const bankPaymentPage: BankPaymentPage = new BankPaymentPage();
   const orderResumePage: OrderResumePage = new OrderResumePage();
-  
-  let finalMessage; 
+
+  let finalMessage;
 
   beforeAll(async () => {
     await browser.get('http://automationpractice.com/');
@@ -47,7 +47,7 @@ describe('Buy a t-shirt', () => {
 
     await paymentStepPage.payByWire();
     await bankPaymentPage.confirmOrder();
-    finalMessage = await orderResumePage.getOrderCompleteMessage()
+    finalMessage = await orderResumePage.getOrderCompleteMessage();
   });
 
   it('then should be bought a t-shirt', () => {
