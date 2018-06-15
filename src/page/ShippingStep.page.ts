@@ -1,11 +1,11 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { ElementFinder, promise, element, by } from 'protractor';
 
 export class ShippingStepPage {
   private get termsChechbox(): ElementFinder {
-    return $('#cgv');
+    return element(by.css('#cgv'));
   }
   private get checkoutButton(): ElementFinder {
-    return $('#form > p > button > span');
+    return element(by.css('#form > p > button > span'));
   }
 
   public agreeTermsAndConditions(): promise.Promise<void> {

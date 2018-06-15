@@ -1,8 +1,8 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { ElementFinder, promise, element, by } from 'protractor';
 
 export class OrderResumePage {
   private get orderCompleteMessage(): ElementFinder {
-    return $('#center_column > div > p > strong');
+    return element(by.css('#center_column > div > p > strong'));
   }
 
   public getOrderCompleteMessage(): promise.Promise<String> {

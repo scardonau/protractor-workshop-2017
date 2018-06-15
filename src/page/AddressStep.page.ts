@@ -1,8 +1,8 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { ElementFinder, promise, element, by } from 'protractor';
 
 export class AddressStepPage {
   private get checkoutButton(): ElementFinder {
-    return $('#center_column > form > p > button > span');
+    return element(by.css('#center_column > form > p > button > span'));
   }
 
   public proceedToCheckout(): promise.Promise<void> {

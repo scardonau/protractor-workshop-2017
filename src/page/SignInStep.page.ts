@@ -1,14 +1,14 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { ElementFinder, promise, element, by } from 'protractor';
 
 export class SignInStepPage {
   private get emailForm(): ElementFinder {
-    return $('#email');
+    return element(by.css('#email'));
   }
   private get passwordForm(): ElementFinder {
-    return $('#passwd');
+    return element(by.css('#passwd'));
   }
   private get loginButton(): ElementFinder {
-    return $('#SubmitLogin > span');
+    return element(by.css('#SubmitLogin > span'));
   }
 
   public submitLogin(): promise.Promise<void> {

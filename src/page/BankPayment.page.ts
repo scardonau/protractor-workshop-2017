@@ -1,8 +1,8 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { ElementFinder, promise, element, by } from 'protractor';
 
 export class BankPaymentPage {
   private get confirmOrderButton(): ElementFinder {
-    return $('#cart_navigation > button > span');
+    return element(by.css('#cart_navigation > button > span'));
   }
 
   public confirmOrder(): promise.Promise<void> {

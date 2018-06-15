@@ -1,8 +1,8 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { ElementFinder, promise, element, by } from 'protractor';
 
 export class MenuContentPage {
   private get tShirtMenu(): ElementFinder {
-    return $('#block_top_menu > ul > li:nth-child(3) > a');
+    return element(by.css('#block_top_menu > ul > li:nth-child(3) > a'));
   }
 
   public goToTShirtMenu(): promise.Promise<void> {

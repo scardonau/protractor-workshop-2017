@@ -1,8 +1,8 @@
-import { $, ElementFinder, promise } from 'protractor';
+import { ElementFinder, promise, element, by } from 'protractor';
 
 export class ProductAddedModalPage {
   private get checkoutButton(): ElementFinder {
-    return $('[style*="display: block;"] .button-container > a');
+    return element(by.css('[style*="display: block;"] .button-container > a'));
   }
 
   public proceedToCheckout(): promise.Promise<void> {
