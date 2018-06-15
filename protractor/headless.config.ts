@@ -16,7 +16,7 @@ export const config: Config = {
   jasmineNodeOpts: { defaultTimeoutInterval: 120000 },
   onPrepare: () => {
     browser.ignoreSynchronization = true;
-    browser.manage().timeouts().implicitlyWait(3000);
+    browser.manage().timeouts().implicitlyWait(0);
     reporter();
   }
 };
