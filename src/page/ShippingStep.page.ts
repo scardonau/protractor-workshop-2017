@@ -2,7 +2,7 @@ import { ElementFinder, promise, element, by } from 'protractor';
 
 export class ShippingStepPage {
   private get termsChechbox(): ElementFinder {
-    return element(by.css('#cgv'));
+    return element(by.id('cgv'));
   }
   private get checkoutButton(): ElementFinder {
     return element(by.css('#form > p > button > span'));

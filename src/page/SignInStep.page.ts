@@ -2,10 +2,10 @@ import { ElementFinder, promise, element, by } from 'protractor';
 
 export class SignInStepPage {
   private get emailForm(): ElementFinder {
-    return element(by.css('#email'));
+    return element(by.id('email'));
   }
   private get passwordForm(): ElementFinder {
-    return element(by.css('#passwd'));
+    return element(by.id('passwd'));
   }
   private get loginButton(): ElementFinder {
     return element(by.css('#SubmitLogin > span'));
