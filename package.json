@@ -9,13 +9,14 @@
   },
   "devDependencies": {
     "@types/jasminewd2": "^2.0.3",
+    "jasmine-awesome-report": "0.0.3",
     "jasmine-spec-reporter": "^4.2.1",
     "tslint": "^5.10.0",
     "tslint-config-airbnb": "^5.9.2",
     "typescript": "^2.9.2"
   },
   "scripts": {
-    "clean": "rm -rf dist",
+    "clean": "rm -rf dist reports",
     "prebuild": "npm run clean",
     "build": "tsc",
     "test": "npm run test:headless",
