@@ -2,7 +2,7 @@ import { ElementFinder, promise, element, ElementArrayFinder, by } from 'protrac
 
 export class ProductListPage {
 
-  public get productContainerList(): ElementArrayFinder {
+  private get productContainerList(): ElementArrayFinder {
     return element.all(by.css('#center_column > ul > li'));
   }
 
