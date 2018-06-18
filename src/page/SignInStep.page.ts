@@ -8,7 +8,7 @@ export class SignInStepPage {
     return element(by.id('passwd'));
   }
   private get loginButton(): ElementFinder {
-    return element(by.css('#SubmitLogin > span'));
+    return element(by.id('SubmitLogin'));
   }
 
   public submitLogin(): promise.Promise<void> {
