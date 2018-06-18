@@ -11,6 +11,6 @@ export let reporter = () => {
     fileName: 'awesome',
     merge: true
   };
-  
+
   jasmine.getEnv().addReporter(AwesomeReport.getReport(config));
 };

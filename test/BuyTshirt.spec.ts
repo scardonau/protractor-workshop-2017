@@ -27,36 +27,36 @@ describe('Buy a t-shirt', () => {
   const orderResumePage: OrderResumePage = new OrderResumePage();
 
   let finalMessage;
-  
-  describe('Open the web page on browser', () =>{
+
+  describe('Open the web page on browser', () => {
     beforeAll(async () => {
       await browser.get('http://automationpractice.com/');
     });
-    
-    describe('T-shirt buy process', () =>{
+
+    describe('T-shirt buy process', () => {
       beforeAll(async () => {
         await menuContentPage.goToTShirtMenu();
-        await productListPage.clickImage();
+        await productListPage.selectProduct('Printed Dress');
         await productDetailPage.addToCart();
         await productAddedModalPage.proceedToCheckout();
         await summaryStepPage.proceedToCheckout();
       });
 
-      describe('Log into the application', () =>{
+      describe('Log into the application', () => {
         beforeAll(async () => {
           await signInStepPage.insertEmail('aperdomobo@gmail.com');
           await signInStepPage.insertPassword('WorkshopProtractor');
           await signInStepPage.submitLogin();
         });
 
-        describe('Select address by default', () =>{
+        describe('Select address by default', () => {
           beforeAll(async () => {
             await addressStepPage.proceedToCheckout();
             await shippingStepPage.agreeTermsAndConditions();
             await shippingStepPage.proceedToCheckout();
           });
 
-          describe('Bank payment', () =>{
+          describe('Bank payment', () => {
             beforeAll(async () => {
               await paymentStepPage.payByWire();
               await bankPaymentPage.confirmOrder();
