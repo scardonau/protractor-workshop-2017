@@ -1,76 +1,90 @@
-import { ElementFinder, promise, element, by, ElementArrayFinder } from 'protractor';
+import { ElementFinder, promise, element, by } from 'protractor';
 
 export class PersonalInformationPage {
 
   private get formTitle(): ElementFinder {
     return element(by.css('.wpb_content_element > div > h1'));
   }
+
   private get submitButton(): ElementFinder {
     return element(by.id('submit'));
   }
-  private itemsByName(name: string): ElementArrayFinder {
-    return element.all(by.name(name));
-  }
-  private filterByValue(searchedValue: string, array: ElementArrayFinder): ElementFinder {
-    return array.filter((element: ElementFinder) => element
-      .getAttribute('value').then(value => value === searchedValue))
-      .first();
+
+  private get firstNameField(): ElementFinder {
+    return element(by.name('firstname'));
   }
 
-  private fillFirstName(firstName: string): promise.Promise<void> {
-    return this.itemsByName('firstname').first().sendKeys(firstName);
+  private get lastNameField(): ElementFinder {
+    return element(by.name('lastname'));
   }
-  private fillLastName(lastName: string): promise.Promise<void> {
-    return this.itemsByName('lastname').first().sendKeys(lastName);
-  }
-  private selectSex(sex: string): promise.Promise<void> {
-    const sexItems = this.itemsByName('sex');
-    return this.filterByValue(sex, sexItems).click();
-  }
-  private selectExperience(experience: string): promise.Promise<void> {
-    const experienceItems = this.itemsByName('exp');
-    return this.filterByValue(experience, experienceItems).click();
-  }
-  private selectProfessions(professions: string[]) {
-    const professionItems = this.itemsByName('profession');
-    professions.forEach(async (profession) => {
-      await this.filterByValue(profession, professionItems).click();
-    });
-  }
-  private selectTools(tools: string[]) {
-    const toolItems = this.itemsByName('tool');
-    tools.forEach(async (tool) => {
-      await this.filterByValue(tool, toolItems).click();
-    });
-  }
-  private async selectContinent(continent: string) {
-    const continentsSelect = element(by.id('continents'));
-    await continentsSelect.click();    
-    await continentsSelect.element(by.cssContainingText('option', continent)).click();
 
+  private sexRadioButton(sex: string): ElementFinder {
+    return element(by.css(`input[value="${sex}"`));
   }
-  private clickCommands(commands): promise.Promise<void> {
-    const commandsSelect = element(by.id('selenium_commands'));
-    return commands.forEach(async (element) => {
-      await commandsSelect.element(by.cssContainingText('option', element)).click();
-    });
+
+  private experienceRadioButton(experience: number): ElementFinder {
+    return element(by.id(`exp-${experience - 1}`));
   }
+
+  private professionCheckbox(profession: string): ElementFinder {
+    return element(by.css(`[value="${profession}"]`));
+  }
+
+  private toolRadioButton(tool: string): ElementFinder {
+    return element(by.css(`input[value="${tool}"]`));
+  }
+
+  private get continentsDropdown(): ElementFinder {
+    return element(by.id('continents'));
+  }
+
+  private continentOption(continentName: string): ElementFinder {
+    return element(by.cssContainingText('option', continentName));
+  }
+
+  private commandOption(commandName: string): ElementFinder {
+    return element(by.cssContainingText('option', commandName));
+  }
+
+  private async selectProfessions(professions: string[]): Promise<void> {
+    for (const profession of professions) {
+      await this.professionCheckbox(profession).click();
+    }
+  }
+  private async selectTools(tools: string[]): Promise<void> {
+    for (const tool of tools) {
+      await this.toolRadioButton(tool).click;
+    }
+  }
+
+  private async selectCommands(commands): Promise<void> {
+    for (const command of commands) {
+      await this.commandOption(command).click;
+    }
+  }
+
   private submitForm(): promise.Promise<void> {
     return this.submitButton.click();
   }
 
+  private async selectContinent(continent: string): Promise<void> {
+    await this.continentsDropdown.click();
+    await this.continentOption(continent).click();
+  }
+
   public async fillForm(parameters) {
-    await this.fillFirstName(parameters.firstName);
-    await this.fillLastName(parameters.lastName);
-    await this.selectSex(parameters.sex);
-    await this.selectExperience(parameters.experience.toString());
+    await this.firstNameField.sendKeys(parameters.firstName);
+    await this.lastNameField.sendKeys(parameters.lastName);
+    await this.sexRadioButton(parameters.sex).click();
+    await this.experienceRadioButton(parameters.experience).click();
     await this.selectProfessions(parameters.profession);
     await this.selectTools(parameters.tools);
     await this.selectContinent(parameters.continent);
-    await this.clickCommands(parameters.commands);
+    await this.selectCommands(parameters.commands);
     await this.submitForm();
   }
-  public titleText(): promise.Promise<String> {
+
+  public getTitleText(): promise.Promise<String> {
     return this.formTitle.getText();
   }
 }

@@ -3,13 +3,13 @@ import { PersonalInformationPage } from '../src/page';
 
 describe('Practice automation form', () => {
 
-  describe('Open browser on page', () => {
+  describe('When we open the browser on the form page', () => {
 
     beforeAll(async () => {
       await browser.get('http://toolsqa.com/automation-practice-form/ ');
     });
 
-    describe('Fill form with given parameters', () => {
+    describe('And fill form with given parameters', () => {
       const personalInformationPage: PersonalInformationPage = new PersonalInformationPage();
       let formTitle;
 
@@ -29,12 +29,16 @@ describe('Practice automation form', () => {
             'Wait Commands',
             'WebElement Commands']
         });
-        await browser.sleep(10000);
-        formTitle = await personalInformationPage.titleText();
       });
 
-      it('The title of the page must match with the expected', () => {
-        expect(formTitle).toBe('Practice Automation Form');
+      describe('If we submit the form', () => {
+        beforeAll(async () => {
+          formTitle = await personalInformationPage.getTitleText();
+        });
+
+        it('Then the title of the page must match with the expected', async () => {
+          expect(formTitle).toBe('Practice Automation Form');
+        });
       });
     });
   });
