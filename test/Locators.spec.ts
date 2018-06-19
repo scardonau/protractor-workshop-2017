@@ -14,8 +14,7 @@ describe('Practice automation form', () => {
       let formTitle;
 
       beforeAll(async () => {
-        await personalInformationPage.fillFirstName('Alejandro');
-        /* await personalInformationPage.fillForm({
+        await personalInformationPage.fillForm({
           firstName: 'Alejandro',
           lastName: 'Perdomo',
           sex: 'Male',
@@ -28,7 +27,9 @@ describe('Practice automation form', () => {
             'Navigation Commands',
             'Switch Commands',
             'Wait Commands',
-            'WebElement Commands'] */
+            'WebElement Commands']
+        });
+        await browser.sleep(10000);
         formTitle = await personalInformationPage.titleText();
       });
 
@@ -38,4 +39,3 @@ describe('Practice automation form', () => {
     });
   });
 });
-
