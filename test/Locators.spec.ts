@@ -14,7 +14,7 @@ describe('Practice automation form', () => {
       let formTitle;
 
       beforeAll(async () => {
-        await personalInformationPage.fillForm({
+        await personalInformationPage.submit({
           firstName: 'Alejandro',
           lastName: 'Perdomo',
           sex: 'Male',
@@ -22,6 +22,7 @@ describe('Practice automation form', () => {
           profession: ['Automation Tester'],
           tools: ['Selenium Webdriver'],
           continent: 'South America',
+          file: '../../resources/image.jpg',
           commands: [
             'Browser Commands',
             'Navigation Commands',
