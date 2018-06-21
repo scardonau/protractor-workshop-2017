@@ -1,20 +1,24 @@
 language: node_js
-cache:
+cache: 
 directories:
 - node_modules
-notifications:
+notifications: 
 email: false
 node_js:
 - '7'
-branches:
+branches: 
 except:
-- /^v\d+\.\d+\.\d+$/
+- "/^v\\d+\\.\\d+\\.\\d+$/"
 sudo: required
 dist: trusty
 addons:
   sauce_connect: true
   apt:
     sources:
-      - google-chrome
+    - google-chrome
     packages:
-      - google-chrome-stable
+    - google-chrome-stable
+env:
+  global:
+  - secure: lcL/YuShAlazuuSeDLXXiCazDI0/z+iIik8b2aSeJN1/ENIpwU1N8m4EasJgu+ds94rG7r0klMyGB1bteofuutXxplQGqAZqGsP38rf6j4s7aHro/hMzAUM7+vfcjHYQakRJzYwhixL0l26AogsOvn55YonbYCjPXxmzumzn0/0Fs8oZ3krUi50Q3S71rNF+vmmsvuGZG+id2HKQQ1KT2PqJw4DhRwbznAZYKCrk4K45o53tqXEmrzkP7Pz51XFCUXpg9ur01JagBR+nT4QZkNBkoZfJOculqGRkeG3cuHTpduVSm3o557wcbfR6IAaywMB29tQ5ymhslQ+Yw5RSulDVy4TCEKddf1Thb4fssvUpbHETv6gboL8ZnBqqYtxAK6xHdEDOB21QCu4+cL0WJhGY3duPSEEwD5wIlKA6MKHIrI0cqDJrIMoPCipw8c778QVnLHM2kIe2lLn+fjuLetAkAEtKE+O7S9xs9M9huaBdPuKP1FR7AUGtm6R/d0gmDKyNh9T7uc7h63LKvt/+Oe8qCMyNBAfvqXKmYDW0qGzOlGQwSoIxwRgyvNZpX2I46WZz8oqpl7p9f8CVynTPUQlLHny0GCeegeH1xzgCiYghnp4tTwCbd+6ITE7dq/88ch7ZhDI+1KsnwXzJmjBXd14KQSnnjy7hw+UtTbuZS90=
+  - secure: aPHIlcGO93ldI4smh2nRAaDfQE9CVErhrpC2ncV5giXPL5RzZukHoJEoMkkNIAipm+SGfZhLsNzZ0tdvfpPbZwOoa+cPFMTX75hRk21c6Q3wRV97Vzuvx19xSh/RlWiV1+I9vmFiMQ6UWXoToWUnNlfOk0+CglYiwvxApo4tb2VXvYM/slr79JTvJ0qkLINZc0yGgC4i3M58dOz/1b7dPvxlc3bgnYX/0pkxvT9vg36Ygb/53nJeudwukTdtu+QuNQA+Yqruk8leqL5QvZUVbLK8u1G5434CYpcw6ILcgkQqxFHBOgH6JcGGRBjyWT5YiCgCDxkrKD6YTEKGukREfXYMcoC/BoP7238rO/JmR0jyV5UAE9pqtHSdg1XvnwLXI3PsnDTYfwwOq/5VSr+PTAfxxHxl+z2gXT7wqg5LbDm/+zw6nR48Pua1PtLEI3qVD63RoyAo3ucXySfRuw633OvfA7K5Miw8sDlm8yBtTBJjFH6E0v8bzpJ4GCs3QzshW5YG7oSkkWrInz8S91OZIkujzSwYthFZO2X7MeCORNBokgDlrVefliYhPkUH3l2Fk5QFn4DbAYXm1QdSlT19tTETKrl7PmEi0AMA1T1ATXXpUuxuKNpHVfTaBWXf7STdH7f9ESCIgrh3e4E2vtwrCPBa2M9NGrHW4Hy0yFkKoCc=
