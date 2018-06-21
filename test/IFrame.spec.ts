@@ -6,7 +6,7 @@ describe('Given that we visit a page with an Iframe', () => {
   const iFramePage : IFramePage = new IFramePage();
 
   beforeAll(async () => {
-    await browser.get(iframePageUrl)
+    await browser.get(iframePageUrl);
   });
 
   describe('when we try to modify the Iframe 1 height', () => {
@@ -16,9 +16,9 @@ describe('Given that we visit a page with an Iframe', () => {
     beforeAll(async () => {
       await iFramePage.changeIFrameHeight(expectedHeight);
       newHeight = await iFramePage.getIFrameHeight();
-    })
+    });
 
-    it(`then the new Iframe height should be ${expectedHeight}`, () =>{
+    it(`then the new Iframe height should be ${expectedHeight}`, () => {
       expect(newHeight).toBe(expectedHeight);
     });
   });
