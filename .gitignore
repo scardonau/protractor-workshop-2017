@@ -92,4 +92,6 @@ dist
 #Reporter()
 reports
 
+#File download test
+temp
 # End of https://www.gitignore.io/api/node,windows,visualstudiocode

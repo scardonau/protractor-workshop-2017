@@ -1,5 +1,6 @@
 import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
+import { DownloadService} from '../src/service';
 
 describe('Given that we go to a practice automation form', () => {
 
@@ -11,8 +12,11 @@ describe('Given that we go to a practice automation form', () => {
 
     describe('when we fill the form', () => {
       const personalInformationPage: PersonalInformationPage = new PersonalInformationPage();
-      const expectedImageName = 'image.jpg';
-      let imageName;
+      const downloadService: DownloadService = new DownloadService();
+      const expectedUploadedImageName = 'image.jpg';
+      const downloadedFileName = 'test-file.xml';
+      let uploadedImageName;
+      let downloadedFile;
 
       beforeAll(async () => {
         await personalInformationPage.fillForm({
@@ -24,6 +28,7 @@ describe('Given that we go to a practice automation form', () => {
           tools: ['Selenium Webdriver'],
           continent: 'South America',
           file: './resources/image.jpg',
+          downloadFile: downloadedFileName,
           commands: [
             'Browser Commands',
             'Navigation Commands',
@@ -31,11 +36,16 @@ describe('Given that we go to a practice automation form', () => {
             'Wait Commands',
             'WebElement Commands']
         });
-        imageName = await personalInformationPage.getImageName();
+        uploadedImageName = await personalInformationPage.getImageName();
+        downloadedFile = await downloadService.readFileFromTemp(downloadedFileName);
       });
 
       it('then the form file should uploaded', () => {
-        expect(imageName).toBe(expectedImageName);
+        expect(uploadedImageName).toBe(expectedUploadedImageName);
+      });
+
+      it('and the page file should be downloaded', () => {
+        expect(downloadedFile.byteLength).toBeGreaterThan(5000);
       });
 
       describe('when we submit the form', () => {
