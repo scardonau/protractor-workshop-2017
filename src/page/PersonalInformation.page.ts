@@ -61,32 +61,36 @@ export class PersonalInformationPage {
 
   private async selectTools(tools: string[]): Promise<void> {
     for (const tool of tools) {
-      await this.toolRadioButton(tool).click;
+      await this.toolRadioButton(tool).click();
     }
   }
 
   private async selectCommands(commands): Promise<void> {
     for (const command of commands) {
-      await this.commandOption(command).click;
+      await this.commandOption(command).click();
     }
   }
 
-  private submitForm(): promise.Promise<void> {
+  public clickSubmit(): promise.Promise<void> {
     return this.submitButton.click();
+  }
+
+  public async getImageName(): Promise<string> {
+    const completePath = await this.uploadFileField.getAttribute('value');
+    return completePath.split('\\').pop();
   }
 
   private async selectContinent(continent: string): Promise<void> {
     await this.continentsDropdown.click();
-    await this.continentOption(continent).click();
+    return this.continentOption(continent).click();
   }
 
-
   private async uploadFile(filePath: string): Promise<void> {
-    const fullPath = resolve(process.cwd(), filePath);
+    const completePath = await resolve(process.cwd(), filePath);
 
-    if (existsSync(fullPath)) {
+    if (existsSync(completePath)) {
       await browser.setFileDetector(new remote.FileDetector());
-      await this.uploadFileField.sendKeys(fullPath);
+      await this.uploadFileField.sendKeys(completePath);
       await browser.setFileDetector(undefined);
     }
   }
@@ -100,12 +104,12 @@ export class PersonalInformationPage {
     await this.uploadFile(formData.file);
     await this.selectTools(formData.tools);
     await this.selectContinent(formData.continent);
-    await this.selectCommands(formData.commands);
+    return this.selectCommands(formData.commands);
   }
 
   public async submit(formData) {
     await this.fillForm(formData);
-    return this.submitForm();
+    return this.clickSubmit();
   }
 
   public getTitleText(): promise.Promise<String> {
