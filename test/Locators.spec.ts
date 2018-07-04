@@ -1,6 +1,6 @@
 import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
-import { DownloadService} from '../src/service';
+import { DownloadService } from '../src/service';
 
 describe('Given that we go to a practice automation form', () => {
 
@@ -59,7 +59,7 @@ describe('Given that we go to a practice automation form', () => {
         it('then the form must be submitted', async () => {
           expect(formTitle).toBe('Practice Automation Form');
         });
-      })
+      });
     });
   });
 });

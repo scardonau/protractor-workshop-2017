@@ -96,12 +96,12 @@ export class PersonalInformationPage {
     }
   }
 
-  private async getDownloadlink(): Promise<string>{
-      const downloadElement = await element(by.cssContainingText('a','Test File to Download'));
-      return downloadElement.getAttribute('href');
+  private async getDownloadlink(): Promise<string> {
+    const downloadElement = await element(by.cssContainingText('a', 'Test File to Download'));
+    return downloadElement.getAttribute('href');
   }
 
-  private async download(fileName: string): Promise<void>{
+  private async download(fileName: string): Promise<void> {
     const downloadService: DownloadService = new DownloadService();
     const downloadLink = await this.getDownloadlink();
     downloadService.downloadFile(downloadLink, fileName);
@@ -114,7 +114,7 @@ export class PersonalInformationPage {
     await this.experienceRadioButton(formData.experience).click();
     await this.selectProfessions(formData.profession);
     await this.uploadFile(formData.file);
-    if(formData.downloadFile){
+    if (formData.downloadFile) {
       await this.download(formData.downloadFile);
     }
     await this.selectTools(formData.tools);
