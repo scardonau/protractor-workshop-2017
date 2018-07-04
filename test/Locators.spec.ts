@@ -1,17 +1,18 @@
 import { browser } from 'protractor';
 import { PersonalInformationPage } from '../src/page';
 
-describe('Practice automation form', () => {
+describe('Given that we go to a practice automation form', () => {
 
-  describe('When we open the browser on the form page', () => {
+  describe('and open the browser on the form page', () => {
 
     beforeAll(async () => {
       await browser.get('http://toolsqa.com/automation-practice-form/ ');
     });
 
-    describe('And fill form with given parameters', () => {
+    describe('when we fill the form', () => {
       const personalInformationPage: PersonalInformationPage = new PersonalInformationPage();
-      let formTitle;
+      const expectedImageName = 'image.jpg';
+      let imageName;
 
       beforeAll(async () => {
         await personalInformationPage.fillForm({
@@ -22,6 +23,7 @@ describe('Practice automation form', () => {
           profession: ['Automation Tester'],
           tools: ['Selenium Webdriver'],
           continent: 'South America',
+          file: './resources/image.jpg',
           commands: [
             'Browser Commands',
             'Navigation Commands',
@@ -29,14 +31,22 @@ describe('Practice automation form', () => {
             'Wait Commands',
             'WebElement Commands']
         });
+        imageName = await personalInformationPage.getImageName();
       });
 
-      describe('If we submit the form', () => {
+      it('then the form file should uploaded', () => {
+        expect(imageName).toBe(expectedImageName);
+      });
+
+      describe('when we submit the form', () => {
+        let formTitle;
+
         beforeAll(async () => {
+          await personalInformationPage.clickSubmit();
           formTitle = await personalInformationPage.getTitleText();
         });
 
-        it('Then the title of the page must match with the expected', async () => {
+        it('then the form must be submitted', async () => {
           expect(formTitle).toBe('Practice Automation Form');
         });
       });
