@@ -2,6 +2,7 @@ import { browser, ElementFinder, promise, element, by } from 'protractor';
 import { resolve } from 'path';
 import { existsSync } from 'fs';
 import * as remote from 'selenium-webdriver/remote';
+import { DownloadService } from '../service';
 
 export class PersonalInformationPage {
 
@@ -95,6 +96,17 @@ export class PersonalInformationPage {
     }
   }
 
+  private async getDownloadlink(): Promise<string>{
+      const downloadElement = await element(by.cssContainingText('a','Test File to Download'));
+      return downloadElement.getAttribute('href');
+  }
+
+  private async download(fileName: string): Promise<void>{
+    const downloadService: DownloadService = new DownloadService();
+    const downloadLink = await this.getDownloadlink();
+    downloadService.downloadFile(downloadLink, fileName);
+  }
+
   public async fillForm(formData) {
     await this.firstNameField.sendKeys(formData.firstName);
     await this.lastNameField.sendKeys(formData.lastName);
@@ -102,6 +114,9 @@ export class PersonalInformationPage {
     await this.experienceRadioButton(formData.experience).click();
     await this.selectProfessions(formData.profession);
     await this.uploadFile(formData.file);
+    if(formData.downloadFile){
+      await this.download(formData.downloadFile);
+    }
     await this.selectTools(formData.tools);
     await this.selectContinent(formData.continent);
     return this.selectCommands(formData.commands);
